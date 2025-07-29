@@ -1,9 +1,9 @@
 
 """
-smart_process_app_FIXED.py
+smart_process_app.py
 ---------------------------
 
-Fully fixed version with support for PNG rendering for Heuristics Miner.
+Full version with support for PNG rendering for Heuristics Miner.
 Heuristics model is rendered via Graphviz from DOT, with valid PNG bytes.
 """
 
@@ -43,7 +43,7 @@ def clean_event_log(df: pd.DataFrame) -> pd.DataFrame:
     df.dropna(how='all', inplace=True)
     df.dropna(axis=1, how='all', inplace=True)
     df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
-    invalid_values = ["", "NaN", "nan", "null", "unknown", np.nan]
+    invalid_values = ["", '""', "...", ".", "--", "_", "NaN", "nan", "null", "unknown", np.nan]
     df.replace(invalid_values, np.nan, inplace=True)
     df.drop_duplicates(inplace=True)
     df.ffill(inplace=True)
